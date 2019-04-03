@@ -17,13 +17,13 @@ var threeSumClosest = function(nums, target) {
         while(L < R){
             let abs = nums[L] + nums[R] + nums[i] -target;
             if( Math.abs(abs) < tmp ) {
-                tmp = Math.abs(abs) ;
-                res = nums[L] + nums[R] + nums[i];
+               tmp = Math.abs(abs) ;
+               res = nums[L] + nums[R] + nums[i];
             }
             if (abs < 0 ) {
-                L++
+               L++
             } else {
-                R--;
+               R--;
             }
         }
     }
