@@ -4,15 +4,12 @@
  * @return {number}
  */
 var searchInsert = function(nums, target) {
-    if (nums.indexOf(target) != -1) {
-        return nums.indexOf(target); 
+    if(nums.indexOf(target) != -1){
+      return nums.indexOf(target);
     } else {
-        for (var i = 0; i = nums.length; i++) {
-            if(target < nums[i]) { 
-                return i;
-            }
-        }
-        return nums.length;
+      nums.push(target);
+      nums = nums.sort(function(a,b){return a-b;}); 
+      return nums.indexOf(target);
     }
-};
+ };
 
