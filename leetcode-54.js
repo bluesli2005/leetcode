@@ -3,55 +3,62 @@
  * @return {number[]}
  */
 var spiralOrder = function(matrix) {
-if (matrix.length === 0) return []
-  let tag = [],
-      l = matrix.length,
-      w = matrix[0].length,
-      pos = 1,  // 1右，2下，3左，4上
-      res = []
-  for (let i = 0; i < w; i++) {
-    tag[i] = [];
-    for (let j = 0; j < l; j++) {
-      tag[i][j] = 1;  // 1：未添加，0：已添加
+    var ret = [];
+    var row = matrix.length;
+    if(row === 0){
+        return ret;
     }
-  }
-  let r = 0,
-      c = 0;
-  while(tag[r] && tag[r][c] === 1) {
-    res.push(matrix[r][c])
-    tag[r][c] = 0
-    switch(pos) {
-      case 1:
-        if (!tag[r][c+1]) {
-          pos = 2
-          r++
-        } else {
-          c++
-        }
-        break
-      case 2:
-        if (tag[r+1] && tag[r+1][c]) {
-          r++
-        } else {
-          pos = 3
-          c--
-        }
-        break
-      case 3:
-        if (!tag[r][c-1]) {
-          pos = 4
-          r--
-        } else { c-- }
-        break
-      case 4:
-        if (!tag[r-1][c]) {
-          pos = 1
-          c++
-        } else {
-          r--
-        }
-        break
+    var col = matrix[0].length;
+    if(col === 0){
+        return ret;
     }
-  }
-  return res;
-};
+    var len = row * col;
+    var cur_row = 0;
+    var cur_col = 0;
+    var pos = 1;
+    for( var i = 0;i < len; i++ ){
+        switch(pos){
+            case 1:
+                ret.push(matrix[cur_row][cur_col]);
+                matrix[cur_row][cur_col] = null;
+                if(cur_col<col-1 && matrix[cur_row][cur_col+1]!==null){
+                    cur_col++;
+                }else{
+                    pos = 2;
+                    cur_row++;
+                }
+                break;
+            case 2:
+                ret.push(matrix[cur_row][cur_col]);
+                matrix[cur_row][cur_col] = null;
+                if(cur_row<row-1 && matrix[cur_row+1][cur_col]!==null){
+                    cur_row++;
+                }else{
+                    pos = 3;
+                    cur_col--;
+                }
+                break;
+            case 3:
+                ret.push(matrix[cur_row][cur_col]);
+                matrix[cur_row][cur_col] = null;
+                if(cur_col>0 && matrix[cur_row][cur_col-1]!==null){
+                    cur_col--;
+                }else{
+                    pos = 4;
+                    cur_row--;
+                }
+                break;
+            case 4:
+                ret.push(matrix[cur_row][cur_col]);
+                matrix[cur_row][cur_col] = null;
+                if(cur_row>1 && matrix[cur_row-1][cur_col]!==null){
+                    cur_row--;
+                }else{
+                    pos = 1;
+                    cur_col++;
+                }
+                break;
+        }
+    }
+    return ret;
+}
