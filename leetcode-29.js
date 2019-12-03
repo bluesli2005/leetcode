@@ -4,8 +4,8 @@
  * @return {number}
  */
 var divide = function(dividend, divisor) {
-    var MAX_INT = Math.pow(2, 31) - 1,
-        MIN_INT = -Math.pow(2, 31),
+    let MAX = Math.pow(2, 31) - 1,
+        MIN = -Math.pow(2, 31),
         result = 0,
         newDividend = Math.abs(dividend),
         newDivisor = Math.abs(divisor),
@@ -28,18 +28,14 @@ var divide = function(dividend, divisor) {
             temp = temp << 1;
             i++;
             if (flag > 0 && i > 29) {
-                return MAX_INT;
+                return MAX;
             }
             if (flag < 0 && i > 30) {
-                return MIN_INT;
+                return MIN;
             }
         }
         newDividend -= temp;
         result += Math.pow(2, i);
     }
-    if (flag > 0) {
-        return result;
-    } else {
-        return -result;
-    }
+    return flag > 0 ? result : -result;
 };
