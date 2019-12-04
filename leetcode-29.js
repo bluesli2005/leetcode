@@ -19,8 +19,7 @@ var divide = function(dividend, divisor) {
         flag = -1;
     }
     while (newDividend >= newDivisor) {
-        var temp = newDivisor,
-            i = 0;
+        let temp = newDivisor, i = 0;
         while (newDividend >= temp << 1) {
             if ((temp << 1) <= 0) {
                 break;
