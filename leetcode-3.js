@@ -8,6 +8,8 @@ var lengthOfLongestSubstring = function(s) {
    return s.split('').reduce((max, v, i) => { 
        left = map[v] >= left ? map[v] + 1 : left; 
        map[v] = i; 
-       return Math.max(max, i - left + 1); 
+       return Math.max(max, i - left + 1 ); 
    }, 0);
 };
+
+
